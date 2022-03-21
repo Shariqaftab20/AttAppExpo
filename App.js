@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
 
-export default function App() {
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './screen/HomeScreen';
+import AdminScreen from './screen/AdminScreen';
+import SignInScreen from './screen/SignInScreen';
+import SignUpScreen from './screen/SignUpScreen';
+import ConfirmEmailScreen from './screen/ConfirmEmailScreen';
+import ForgotPasswordScreen from './screen/ForgotPasswordScreen';
+import NewPasswordScreen from './screen/NewPasswordScreen';
+import AnimButton from './screen/AnimButton';
+import CompanyLogIn from './screen/CompanyLogIn';
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home' screenOptions={{
+        headerShown: false,
+      }
+      }>
+        <Stack.Screen options={{ title: '' }} name="Home" component={HomeScreen} />
+        <Stack.Screen name="Admin" component={AdminScreen} />
+        <Stack.Screen name="Anim" component={AnimButton} />
+        {/* <Stack.Screen name="Company" component={CompanyLogIn} /> */}
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
